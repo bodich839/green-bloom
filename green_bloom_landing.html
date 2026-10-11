@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Демонстраційний лендинг студії квітів Green Bloom.">
+  <title>Green Bloom — квіти з настроєм</title>
+  <style>
+    :root {
+      --ink: #20332a;
+      --muted: #68776d;
+      --green: #315d46;
+      --green-dark: #244633;
+      --cream: #f7f5ee;
+      --white: #fffefa;
+      --peach: #f0c9b8;
+      --line: #e4e7de;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    header {
+      position: sticky; top: 0; z-index: 5;
+      background: rgba(255,254,250,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(228,231,222,.85);
+    }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-family: Georgia, serif; font-size: 1.55rem; font-weight: 700; letter-spacing: -.04em; }
+    .brand span { color: var(--green); }
+    .navlinks { display: flex; align-items: center; gap: 26px; font-size: .94rem; color: var(--muted); }
+    .navlinks a:hover { color: var(--green); }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 20px; border-radius: 999px; border: 0;
+      background: var(--green); color: white; font: inherit; font-weight: 650;
+      cursor: pointer; transition: transform .2s, background .2s;
+    }
+    .button:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .button.light { color: var(--green); background: white; border: 1px solid var(--line); }
+    .hero { padding: 72px 0 78px; background: var(--cream); overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 54px; }
+    .eyebrow { color: var(--green); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 750; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; font-weight: 500; }
+    h1 { font-size: clamp(2.8rem, 5.5vw, 5rem); letter-spacing: -.055em; margin: 17px 0 22px; }
+    h1 em { color: var(--green); font-weight: 500; }
+    .hero p { max-width: 510px; color: var(--muted); font-size: 1.08rem; margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { margin-top: 22px; color: var(--muted); font-size: .88rem; }
+    .hero-art { min-height: 440px; position: relative; display: grid; place-items: center; }
+    .art-back { position: absolute; width: 80%; height: 90%; border-radius: 48% 48% 24px 24px; background: #e4e9dc; transform: rotate(4deg); }
+    .flower-card {
+      position: relative; width: min(100%, 420px); height: 430px; overflow: hidden;
+      border-radius: 48% 48% 18px 18px; background: linear-gradient(145deg, #f3d9cc, #d6e1d1 75%);
+      box-shadow: 0 24px 60px rgba(42,69,49,.14);
+    }
+    .sun { position: absolute; width: 170px; height: 170px; border-radius: 50%; background: #f8e9c7; top: 42px; right: 35px; }
+    .stem { position: absolute; bottom: -20px; left: 48%; width: 5px; height: 250px; background: #507653; transform: rotate(8deg); border-radius: 99px; }
+    .leaf { position: absolute; width: 95px; height: 42px; background: #608464; border-radius: 100% 0 100% 0; }
+    .leaf.one { left: 22%; bottom: 95px; transform: rotate(18deg); }
+    .leaf.two { left: 49%; bottom: 160px; transform: rotate(195deg); }
+    .leaf.three { left: 32%; bottom: 220px; transform: rotate(4deg) scale(.78); }
+    .bloom { position: absolute; left: 50%; top: 100px; width: 150px; height: 150px; transform: translateX(-50%); }
+    .petal { position: absolute; width: 58px; height: 78px; left: 46px; top: 0; background: #d78375; border-radius: 50% 50% 45% 45%; transform-origin: 50% 75px; }
+    .petal:nth-child(2) { transform: rotate(60deg); background: #e6a08e; }
+    .petal:nth-child(3) { transform: rotate(120deg); background: #cf796e; }
+    .petal:nth-child(4) { transform: rotate(180deg); background: #e8aa98; }
+    .petal:nth-child(5) { transform: rotate(240deg); background: #d8897b; }
+    .petal:nth-child(6) { transform: rotate(300deg); background: #efb8a2; }
+    .flower-center { position: absolute; width: 38px; height: 38px; border-radius: 50%; background: #e9c86f; left: 56px; top: 56px; border: 6px dotted #d4a84e; }
+    .art-label { position: absolute; left: 0; bottom: 30px; padding: 14px 18px; border-radius: 14px; background: white; box-shadow: 0 10px 35px #20332a18; font-size: .9rem; }
+    .art-label strong { display: block; font-family: Georgia, serif; font-size: 1.2rem; font-weight: 500; }
+    section { padding: 84px 0; }
+    .section-head { max-width: 650px; margin-bottom: 38px; }
+    .section-head h2 { font-size: clamp(2.1rem, 4vw, 3.3rem); letter-spacing: -.04em; margin: 12px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { border: 1px solid var(--line); border-radius: 18px; padding: 24px; background: white; }
+    .card-icon { width: 48px; height: 48px; display: grid; place-items: center; background: var(--cream); border-radius: 14px; font-size: 1.4rem; }
+    .card h3 { font-size: 1.45rem; margin: 20px 0 8px; }
+    .card p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .about { background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+    .about-art { min-height: 300px; border-radius: 22px; background: linear-gradient(135deg, #e9d3c5, #dbe4d6); display: grid; place-items: center; font-size: 6rem; }
+    .about h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin: 12px 0 18px; }
+    .about p { color: var(--muted); }
+    .checks { padding: 0; list-style: none; display: grid; gap: 10px; margin: 22px 0 0; }
+    .checks li::before { content: "✓"; color: var(--green); font-weight: 800; margin-right: 10px; }
+    .contact { text-align: center; }
+    .contact .section-head { margin-inline: auto; }
+    .contact-panel { background: var(--green); color: white; border-radius: 24px; padding: 44px 24px; }
+    .contact-panel h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0 0 12px; }
+    .contact-panel p { color: #e0e9df; margin: 0 auto 24px; max-width: 540px; }
+    .contact-panel .button { background: white; color: var(--green); }
+    footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    @media (max-width: 780px) {
+      .nav { min-height: 66px; }
+      .navlinks { display: none; }
+      .hero { padding: 48px 0 55px; }
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-art { min-height: 350px; }
+      .flower-card { height: 340px; max-width: 340px; }
+      .bloom { top: 70px; transform: translateX(-50%) scale(.82); }
+      .stem { height: 210px; }
+      .cards { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+      .about-art { min-height: 220px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Green Bloom — на головну">green<span>bloom</span>.</a>
+      <nav class="navlinks" aria-label="Головна навігація">
+        <a href="#services">Букети</a>
+        <a href="#about">Про нас</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+      <a class="button" href="#contact">Замовити букет ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Квіткова майстерня · демопроєкт</div>
+          <h1>Квіти, що говорять <em>замість слів.</em></h1>
+          <p>Створюємо букети з характером — для важливих моментів, маленьких радощів і просто гарного дня.</p>
+          <div class="actions">
+            <a class="button" href="#services">Обрати букет <span aria-hidden="true">→</span></a>
+            <a class="button light" href="#about">Наша історія</a>
+          </div>
+          <div class="hero-note">Свіжі квіти · Авторські композиції · Увага до деталей</div>
+        </div>
+        <div class="hero-art" aria-label="Декоративна ілюстрація квітки">
+          <div class="art-back"></div>
+          <div class="flower-card">
+            <div class="sun"></div>
+            <div class="stem"></div>
+            <div class="leaf one"></div><div class="leaf two"></div><div class="leaf three"></div>
+            <div class="bloom">
+              <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+              <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+              <span class="flower-center"></span>
+            </div>
+          </div>
+          <div class="art-label"><strong>З любов’ю до деталей</strong>Кожен букет — особливий</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Що ми створюємо</div>
+          <h2>Знайдеться букет для кожної історії</h2>
+          <p>Три популярні формати, які легко адаптуємо під ваш привід, настрій і бюджет.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌷</div>
+            <h3>Ніжні композиції</h3>
+            <p>Легкі сезонні квіти в гармонійних відтінках — для приємних сюрпризів без приводу.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">💐</div>
+            <h3>Авторські букети</h3>
+            <p>Виразні композиції з урахуванням події, улюблених кольорів і побажань.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌿</div>
+            <h3>Квіти для подій</h3>
+            <p>Оформлення невеликих свят, фотозон і важливих сімейних моментів.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-art" aria-hidden="true">🌼</div>
+        <div>
+          <div class="eyebrow">Трохи про нас</div>
+          <h2>Краса — у щирих дрібницях</h2>
+          <p>Green Bloom — концепція локальної квіткової майстерні, де кожну композицію підбирають уважно й з душею. Ми віримо, що квіти допомагають сказати те, для чого іноді бракує слів.</p>
+          <ul class="checks">
+            <li>Індивідуальний підхід до кожного замовлення</li>
+            <li>Сезонні квіти та продумані поєднання</li>
+            <li>Допомога з вибором композиції</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div class="eyebrow" style="color:#d8e8d8">Створімо щось красиве</div>
+          <h2>Розкажіть, кого хочете порадувати</h2>
+          <p>Напишіть нам — допоможемо підібрати букет під вашу подію, побажання та бюджет.</p>
+          <a class="button" href="mailto:hello@example.com?subject=Запит%20на%20букет">Написати нам ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home">green<span>bloom</span>.</a>
+      <span>Демонстраційний сайт для портфоліо. Green Bloom — вигаданий бренд.</span>
+      <span>© <span id="year"></span> Green Bloom</span>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
